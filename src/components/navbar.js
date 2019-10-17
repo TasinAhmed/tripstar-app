@@ -3,7 +3,7 @@ import "../styles/navStyle.css";
 
 const navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <a className="navbar-brand" href="/">
           TripStar

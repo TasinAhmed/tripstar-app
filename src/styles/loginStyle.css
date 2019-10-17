@@ -12,6 +12,15 @@
   text-align: center;
 }
 
+.login-form {
+  display: grid;
+  grid-template-columns: minmax(auto, 300px);
+  justify-content: center;
+  grid-row-gap: 15px;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
 .log-img {
   grid-column: 1/4;
 }
@@ -20,12 +29,20 @@
 }
 
 @media (min-width: 768px) {
+  .log-wrap {
+    grid-column-gap: 50px;
+  }
+
   .login {
     grid-column: 1/2;
   }
 
   .log-img {
     grid-column: 2/4;
+  }
+
+  .login-form {
+    margin-bottom: 0;
   }
 }
 

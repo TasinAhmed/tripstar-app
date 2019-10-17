@@ -24,6 +24,17 @@ const footer = () => {
             </li>
           </ul>
         </div>
+        <div className="start">
+          <div className="title">GET STARTED</div>
+          <ul>
+            <li>
+              <a href="/login/">Log In</a>
+            </li>
+            <li>
+              <a href="/signup/">Sign Up</a>
+            </li>
+          </ul>
+        </div>
         <div className="newsletter">
           <div className="title">SIGN UP FOR OUR NEWSLETTER</div>
           <div className="input-group mb-3">
@@ -45,7 +56,18 @@ const footer = () => {
             </div>
           </div>
         </div>
-        <img src={footImg} className="img-fluid" alt="" />
+        <div className="social">
+          <div className="title">FIND US ON SOCIAL MEDIA</div>
+          <a href="#">
+            <i class="fab fa-facebook-f fa-lg"></i>
+          </a>
+          <a href="#">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+          <a href="#">
+            <i class="fab fa-instagram fa-lg"></i>
+          </a>
+        </div>
         <div className="copyright">
           &copy;2019 TripStar All Rights Reserved. Designed by{" "}
           <span className="name">Tasin Ahmed</span>
