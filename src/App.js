@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Error from "./pages/Error";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Error />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 }

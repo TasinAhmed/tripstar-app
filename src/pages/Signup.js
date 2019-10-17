@@ -1,14 +1,21 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import signImg from "../images/signup.svg";
+import "../styles/signupStyle.css";
 
 const Signup = () => {
   return (
-    <div>
+    <>
       <Helmet>
         <title>TripStar | Sign Up</title>
       </Helmet>
-      <h1>Signup</h1>
-    </div>
+      <div className="sign-wrap container">
+        <div className="signup">
+          <h4>Sign Up for TripStar</h4>
+        </div>
+        <img className="sign-img img-fluid" src={signImg} alt="" />
+      </div>
+    </>
   );
 };
 

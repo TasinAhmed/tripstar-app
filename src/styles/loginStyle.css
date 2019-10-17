@@ -1,0 +1,36 @@
+.log-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  justify-content: center;
+}
+
+.login {
+  grid-column: 1/4;
+  text-align: center;
+}
+
+.log-img {
+  grid-column: 1/4;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .login {
+    grid-column: 1/2;
+  }
+
+  .log-img {
+    grid-column: 2/4;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

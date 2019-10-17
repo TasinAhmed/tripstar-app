@@ -1,0 +1,36 @@
+.sign-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  justify-content: center;
+}
+
+.signup {
+  grid-column: 1/4;
+  text-align: center;
+}
+
+.sign-img {
+  grid-column: 1/4;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  .signup {
+    grid-column: 1/2;
+  }
+
+  .sign-img {
+    grid-column: 2/4;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
