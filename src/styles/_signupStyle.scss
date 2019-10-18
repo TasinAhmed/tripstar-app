@@ -22,26 +22,11 @@
   justify-content: center;
 }
 
-.fName {
-  grid-column: 1/3;
-}
-
-.lName {
-  grid-column: 1/3;
-}
-
-.sign-email {
-  grid-column: 1/3;
-}
-
-.sign-password {
-  grid-column: 1/3;
-}
-
-.sign-phone {
-  grid-column: 1/3;
-}
-
+.fName,
+.lName,
+.sign-email,
+.sign-password,
+.sign-phone,
 .signup-btn {
   grid-column: 1/3;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/navStyle.css";
 
 const navbar = () => {
   return (
@@ -50,10 +49,10 @@ const navbar = () => {
             </li>
           </ul>
           <form class="form-inline d-none d-lg-inline-block">
-            <a class="btn btn-light mr-lg-2" type="button" href="/login/">
+            <a class="btn btn-light mr-lg-2" role="button" href="/login/">
               Log In
             </a>
-            <a class="btn btn-outline-primary" type="button" href="/signup/">
+            <a class="btn btn-outline-primary" role="button" href="/signup/">
               Sign Up
             </a>
           </form>

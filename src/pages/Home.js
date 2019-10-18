@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import "../styles/homeStyle.css";
 import hero from "../images/hero.svg";
 
 const Home = () => {

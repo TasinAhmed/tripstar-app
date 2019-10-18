@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/footStyle.css";
 import footImg from "../images/footer.svg";
 
 const footer = () => {

@@ -1,29 +1,31 @@
-* {
-  color: #888888;
-}
-
 footer {
   background-color: black;
   padding-top: 50px;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  * {
+    color: #888888;
+  }
 }
 
-footer .container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.btn:focus,
-.btn:active {
-  outline: none !important;
-  box-shadow: none !important;
+.btn {
+  &:focus,
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
 .newsletter .form-control {
   border: white;
-}
 
-.newsletter .form-control:focus {
-  box-shadow: none;
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .name {
@@ -60,14 +62,14 @@ footer .container {
   grid-column: 1/5;
   justify-self: center;
   text-align: center;
-}
 
-.social a:nth-of-type(2) {
-  margin: 0 15px;
-}
+  a:nth-of-type(2) {
+    margin: 0 15px;
+  }
 
-.social i {
-  color: white;
+  i {
+    color: white;
+  }
 }
 
 .copyright {
@@ -81,35 +83,35 @@ footer ul {
   list-style: none;
   padding: 0;
   margin: 0;
-}
 
-footer ul li {
-  margin-bottom: 5px;
+  li {
+    margin-bottom: 5px;
+  }
 }
 
 #button-addon2 {
   background-color: white;
   border: none;
   color: black;
-}
 
-#button-addon2 i {
-  color: black;
-  width: 100%;
-  height: 100%;
-}
+  i {
+    color: black;
+    width: 100%;
+    height: 100%;
+  }
 
-#button-addon2:hover i {
-  color: #007bff;
+  &:hover i {
+    color: #007bff;
+  }
 }
 
 footer a {
   color: #888888;
-}
 
-footer a:hover {
-  text-decoration: none;
-  color: #cccccc;
+  &:hover {
+    text-decoration: none;
+    color: #cccccc;
+  }
 }
 
 @media (min-width: 576px) {

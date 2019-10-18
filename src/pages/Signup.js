@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import signImg from "../images/signup.svg";
-import "../styles/signupStyle.css";
 
 const Signup = () => {
   return (
