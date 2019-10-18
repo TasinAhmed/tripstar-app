@@ -1,6 +1,8 @@
+@import "../utilities/variables";
+
 .log-wrap {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -25,9 +27,6 @@
   grid-column: 1/4;
 }
 
-@media (min-width: 576px) {
-}
-
 @media (min-width: 768px) {
   .log-wrap {
     grid-column-gap: 50px;
@@ -44,10 +43,4 @@
   .login-form {
     margin-bottom: 0;
   }
-}
-
-@media (min-width: 992px) {
-}
-
-@media (min-width: 1200px) {
 }

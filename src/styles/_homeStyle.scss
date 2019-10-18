@@ -1,7 +1,7 @@
-$background_color_1: white;
+@import "../utilities/variables";
 
 header.jumbotron {
-  background-color: $background_color_1;
+  background-color: $white;
 }
 header {
   div.container {

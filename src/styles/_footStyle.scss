@@ -1,14 +1,16 @@
+@import "../utilities/variables";
+
 footer {
-  background-color: black;
+  background-color: $black;
   padding-top: 50px;
 
   .container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   * {
-    color: #888888;
+    color: $light_gray;
   }
 }
 
@@ -21,7 +23,7 @@ footer {
 }
 
 .newsletter .form-control {
-  border: white;
+  border: $white;
 
   &:focus {
     box-shadow: none;
@@ -29,12 +31,12 @@ footer {
 }
 
 .name {
-  color: white;
+  color: $white;
   font-weight: bold;
 }
 
 .title {
-  color: white;
+  color: $white;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -68,7 +70,7 @@ footer {
   }
 
   i {
-    color: white;
+    color: $white;
   }
 }
 
@@ -90,31 +92,28 @@ footer ul {
 }
 
 #button-addon2 {
-  background-color: white;
+  background-color: $white;
   border: none;
-  color: black;
+  color: $black;
 
   i {
-    color: black;
+    color: $black;
     width: 100%;
     height: 100%;
   }
 
   &:hover i {
-    color: #007bff;
+    color: $blue;
   }
 }
 
 footer a {
-  color: #888888;
+  color: $light_gray;
 
   &:hover {
     text-decoration: none;
-    color: #cccccc;
+    color: $light_gray_hover;
   }
-}
-
-@media (min-width: 576px) {
 }
 
 @media (min-width: 768px) {
@@ -162,7 +161,4 @@ footer a {
   .social {
     margin-top: 25px;
   }
-}
-
-@media (min-width: 1200px) {
 }
