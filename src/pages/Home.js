@@ -1,6 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import hero from "../images/hero.svg";
+import User from "../classes/User";
+
+console.log("Hello");
 
 const Home = () => {
   return (
@@ -11,18 +14,26 @@ const Home = () => {
       <header className="jumbotron jumbotron-fluid">
         <div className="container">
           <div className="content">
-            <h1 class="display-4">Trips Made Simple.</h1>
-            <p class="lead">
+            <h1 className="display-4">Trips Made Simple.</h1>
+            <p className="lead">
               Discover over 1000+ reviews right at your fingertips. Find the
               perfect destination for your next big trip!
             </p>
-            <a class="btn btn-primary btn-lg" href="/signup/" role="button">
+            <a className="btn btn-primary btn-lg" href="/signup/" role="button">
               Get Started
             </a>
           </div>
-          <img src={hero} class="img-fluid" alt="" />
+          <img src={hero} className="img-fluid" alt="" />
         </div>
       </header>
+      <section className="traits container">
+        <div className="up-to-date">Up-To-Date</div>
+        <div className="unbiased">
+          <i className="fas fa-star-half-alt"></i>
+          <p>Unbiased Reviews</p>
+        </div>
+        <div className="in-depth">In-Depth</div>
+      </section>
     </div>
   );
 };

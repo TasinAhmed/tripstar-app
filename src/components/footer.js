@@ -1,5 +1,4 @@
 import React from "react";
-import footImg from "../images/footer.svg";
 
 const footer = () => {
   return (
@@ -50,21 +49,21 @@ const footer = () => {
                 type="submit"
                 id="button-addon2"
               >
-                <i class="fas fa-paper-plane"></i>
+                <i className="fas fa-paper-plane"></i>
               </button>
             </div>
           </div>
         </div>
         <div className="social">
           <div className="title">FIND US ON SOCIAL MEDIA</div>
-          <a href="#">
-            <i class="fab fa-facebook-f fa-lg"></i>
+          <a href="/">
+            <i className="fab fa-facebook-f fa-lg"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-twitter fa-lg"></i>
+          <a href="/">
+            <i className="fab fa-twitter fa-lg"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-instagram fa-lg"></i>
+          <a href="/">
+            <i className="fab fa-instagram fa-lg"></i>
           </a>
         </div>
         <div className="copyright">

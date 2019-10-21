@@ -11,6 +11,34 @@
   .contact {
     grid-column: 1/3;
     text-align: center;
+
+    form {
+      display: grid;
+      grid-template-columns: minmax(auto, 242.5px) minmax(auto, 242.5px);
+      grid-row-gap: 15px;
+      margin-top: 25px;
+      margin-bottom: 50px;
+      grid-column-gap: 15px;
+      justify-content: center;
+
+      .cont-name {
+        grid-column: 1/3;
+      }
+      .cont-email {
+        grid-column: 1/3;
+      }
+      .subject {
+        grid-column: 1/3;
+      }
+      textarea {
+        resize: none;
+        grid-column: 1/3;
+      }
+
+      button[type="submit"] {
+        grid-column: 1/3;
+      }
+    }
   }
 
   img {
@@ -18,10 +46,27 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .contact-wrap {
+    grid-column-gap: 50px;
     .contact {
       grid-column: 1/2;
+
+      form {
+        .cont-name {
+          grid-column: 1/2;
+        }
+        .cont-email {
+          grid-column: 2/3;
+        }
+        .subject {
+          grid-column: 1/3;
+        }
+        textarea {
+          resize: none;
+          grid-column: 1/3;
+        }
+      }
     }
 
     img {

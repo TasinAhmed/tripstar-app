@@ -22,7 +22,7 @@ const navbar = () => {
           <ul className="navbar-nav mx-auto">
             <li className="nav-item mx-auto">
               <a className="nav-link" href="/reviews/">
-                Reviews
+                Write a Review
               </a>
             </li>
             <li className="nav-item mx-auto">
@@ -48,11 +48,15 @@ const navbar = () => {
               </a>
             </li>
           </ul>
-          <form class="form-inline d-none d-lg-inline-block">
-            <a class="btn btn-light mr-lg-2" role="button" href="/login/">
+          <form className="form-inline d-none d-lg-inline-block">
+            <a className="btn btn-light mr-lg-2" role="button" href="/login/">
               Log In
             </a>
-            <a class="btn btn-outline-primary" role="button" href="/signup/">
+            <a
+              className="btn btn-outline-primary"
+              role="button"
+              href="/signup/"
+            >
               Sign Up
             </a>
           </form>
