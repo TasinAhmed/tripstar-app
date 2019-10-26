@@ -1,7 +1,10 @@
-class User {
-  constructor(name, email) {
-    this.name = name;
+export class User {
+  constructor(fName, lName, email, password, phoneNum) {
+    this.fname = fName;
+    this.lName = lName;
     this.email = email;
+    this.password = password;
+    this.phoneNum = phoneNum;
   }
 
   getName() {
@@ -12,5 +15,3 @@ class User {
     return this.email;
   }
 }
-
-export default User;

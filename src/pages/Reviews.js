@@ -1,15 +1,17 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-const Review = () => {
+const Reviews = () => {
   return (
     <div>
       <Helmet>
         <title>TripStar | Reviews</title>
       </Helmet>
-      <h1>Review</h1>
+      <div className="container">
+        <h4>Reviews</h4>
+      </div>
     </div>
   );
 };
 
-export default Review;
+export default Reviews;

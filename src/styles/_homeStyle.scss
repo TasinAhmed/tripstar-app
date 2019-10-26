@@ -18,6 +18,57 @@ header {
     }
   }
 }
+
+.traits {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 100px;
+
+  .up-to-date,
+  .unbiased,
+  .in-depth {
+    grid-column: 1/4;
+    margin-bottom: 15px;
+    padding: 20px;
+    transition: ease-out 0.2s;
+  }
+
+  .up-to-date,
+  .unbiased,
+  .in-depth {
+    &:hover {
+      transform: scale(1.125);
+      transition: ease-out 0.2s;
+    }
+  }
+
+  svg {
+    color: $blue;
+    margin-bottom: 15px;
+    font-size: 50px;
+  }
+
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .traits {
+    .up-to-date {
+      grid-column: 1/2;
+    }
+    .unbiased {
+      grid-column: 2/3;
+    }
+    .in-depth {
+      grid-column: 3/4;
+    }
+  }
+}
+
 @media (min-width: 992px) {
   header {
     div.container {

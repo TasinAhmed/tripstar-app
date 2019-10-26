@@ -1,1 +1,49 @@
 @import "../utilities/variables";
+
+.nav-item .dropdown-toggle {
+  text-align: center;
+}
+
+.navbar-search {
+  max-width: 300px;
+
+  .btn {
+    display: flex;
+    align-items: center;
+
+    &:focus,
+    &:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  input {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+  }
+
+  input:focus {
+    box-shadow: none;
+    border-top: 0.8px solid rgb(206, 212, 218) !important;
+    border-left: 0.8px solid rgb(206, 212, 218) !important;
+    border-bottom: 0.8px solid rgb(206, 212, 218) !important;
+    border-right: none;
+  }
+
+  #button-addon2 {
+    border-top: 0.8px solid rgb(206, 212, 218) !important;
+    border-right: 0.8px solid rgb(206, 212, 218) !important;
+    border-bottom: 0.8px solid rgb(206, 212, 218) !important;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+
+    path {
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:hover path {
+      color: $blue;
+    }
+  }
+}

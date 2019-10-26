@@ -12,13 +12,22 @@ footer {
   * {
     color: $light_gray;
   }
-}
 
-.btn {
-  &:focus,
-  &:active {
-    outline: none !important;
-    box-shadow: none !important;
+  .btn {
+    display: flex;
+    align-items: center;
+
+    &:focus,
+    &:active {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .social {
+    svg {
+      font-size: 20px;
+    }
   }
 }
 
@@ -69,7 +78,7 @@ footer {
     margin: 0 15px;
   }
 
-  i {
+  path {
     color: $white;
   }
 }
@@ -96,13 +105,13 @@ footer ul {
   border: none;
   color: $black;
 
-  i {
+  path {
     color: $black;
     width: 100%;
     height: 100%;
   }
 
-  &:hover i {
+  &:hover path {
     color: $blue;
   }
 }

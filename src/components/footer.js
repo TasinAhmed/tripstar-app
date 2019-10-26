@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  FaPaperPlane,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram
+} from "react-icons/fa";
 
 const footer = () => {
   return (
@@ -44,12 +50,8 @@ const footer = () => {
               aria-describedby="button-addon2"
             />
             <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="submit"
-                id="button-addon2"
-              >
-                <i className="fas fa-paper-plane"></i>
+              <button className="btn" type="submit" id="button-addon2">
+                <FaPaperPlane />
               </button>
             </div>
           </div>
@@ -57,13 +59,13 @@ const footer = () => {
         <div className="social">
           <div className="title">FIND US ON SOCIAL MEDIA</div>
           <a href="/">
-            <i className="fab fa-facebook-f fa-lg"></i>
+            <FaFacebookF />
           </a>
           <a href="/">
-            <i className="fab fa-twitter fa-lg"></i>
+            <FaTwitter />
           </a>
           <a href="/">
-            <i className="fab fa-instagram fa-lg"></i>
+            <FaInstagram />
           </a>
         </div>
         <div className="copyright">

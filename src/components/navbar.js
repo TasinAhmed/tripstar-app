@@ -1,4 +1,5 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
 
 const navbar = () => {
   return (
@@ -19,7 +20,7 @@ const navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mx-auto">
+          <ul className="navbar-nav mr-auto">
             <li className="nav-item mx-auto">
               <a className="nav-link" href="/reviews/">
                 Write a Review
@@ -48,6 +49,20 @@ const navbar = () => {
               </a>
             </li>
           </ul>
+          <div className="input-group navbar-search mx-sm-auto mr-lg-2">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Search For a Review"
+              aria-label="Search For a Review"
+              aria-describedby="button-addon2"
+            />
+            <div className="input-group-append">
+              <button className="btn" type="submit" id="button-addon2">
+                <FaSearch />
+              </button>
+            </div>
+          </div>
           <form className="form-inline d-none d-lg-inline-block">
             <a className="btn btn-light mr-lg-2" role="button" href="/login/">
               Log In

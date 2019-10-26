@@ -7,7 +7,9 @@ const Gallery = () => {
       <Helmet>
         <title>TripStar | Gallery</title>
       </Helmet>
-      <h1>Gallery</h1>
+      <div className="container">
+        <h4>Gallery</h4>
+      </div>
     </div>
   );
 };

@@ -37,7 +37,7 @@ const Signup = () => {
               className="form-control sign-phone"
               placeholder="Phone Number (Optional)"
             />
-            <button type="submit" class="btn btn-primary signup-btn">
+            <button type="submit" className="btn btn-primary signup-btn">
               Sign Up
             </button>
           </form>
