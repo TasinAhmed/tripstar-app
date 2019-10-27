@@ -22,6 +22,14 @@
   margin-bottom: 50px;
   grid-row-gap: 15px;
   justify-content: center;
+
+  .alert-danger {
+    margin: 0;
+    li {
+      text-align: left;
+      margin-left: 10px;
+    }
+  }
 }
 
 .fName,
@@ -29,7 +37,8 @@
 .sign-email,
 .sign-password,
 .sign-phone,
-.signup-btn {
+.signup-btn,
+.signup-form .alert-danger {
   grid-column: 1/3;
 }
 

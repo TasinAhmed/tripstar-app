@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import logImg from "../images/login.svg";
 
 const Login = () => {
+  const [login, setLogin] = useState({
+    lEmail: "",
+    lPass: ""
+  });
+
+  const [valid, setValid] = useState({
+    valid: true
+  });
+
+  const changeHandler = e => {
+    setLogin({
+      ...login,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const onSubmit = e => {
+    if (login.lEmail === "") {
+      setValid({ valid: false });
+    } else {
+      setValid({ valid: true });
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -14,18 +38,35 @@ const Login = () => {
           <form className="login-form" action="">
             <input
               type="email"
+              name="lEmail"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Email"
+              required
+              onChange={changeHandler}
             ></input>
             <input
               type="password"
+              name="lPass"
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
+              required
+              onChange={changeHandler}
             ></input>
-            <button type="submit" className="btn btn-primary">
+            <div
+              className="alert alert-danger"
+              style={!valid.valid ? {} : { display: "none" }}
+              role="alert"
+            >
+              A simple danger alert—check it out!
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={onSubmit}
+            >
               Log In
             </button>
           </form>

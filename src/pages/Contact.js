@@ -16,11 +16,13 @@ const Contact = () => {
               type="text"
               placeholder="Name"
               className="form-control cont-name"
+              required
             />
             <input
               type="email"
               placeholder="Email"
               className="form-control cont-email"
+              required
             />
             <input
               type="text"
@@ -31,6 +33,7 @@ const Contact = () => {
               className="form-control"
               rows="7"
               placeholder="Message"
+              required
             ></textarea>
             <button className="btn btn-primary" type="submit">
               Send

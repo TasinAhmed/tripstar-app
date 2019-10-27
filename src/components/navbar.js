@@ -49,7 +49,7 @@ const navbar = () => {
               </a>
             </li>
           </ul>
-          <div className="input-group navbar-search mx-sm-auto mr-lg-2">
+          <div className="input-group navbar-search mx-auto mr-lg-2">
             <input
               type="email"
               className="form-control"
