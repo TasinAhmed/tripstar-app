@@ -1,13 +1,30 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaSearch, FaUserCircle } from "react-icons/fa";
+import firebase from "../config/firebase";
+import { Link } from "react-router-dom";
 
-const navbar = () => {
+const Navbar = props => {
+  const [userState, setUserState] = useState(null);
+
+  useEffect(() => {
+    firebase.getUserState().then(user => {
+      if (user) {
+        setUserState(user);
+      }
+    });
+  });
+
+  const logout = () => {
+    firebase.logout();
+    setUserState(null);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           TripStar
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,31 +39,34 @@ const navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item mx-auto">
-              <a className="nav-link" href="/reviews/">
+              <Link className="nav-link" to="/reviews/">
                 Write a Review
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-auto">
-              <a className="nav-link" href="/gallery/">
+              <Link className="nav-link" to="/gallery/">
                 Gallery
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-auto">
-              <a className="nav-link" href="/contact/">
+              <Link className="nav-link" to="/contact/">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
-          <ul className="navbar-nav mx-auto d-lg-none">
+          <ul
+            className="navbar-nav mx-auto d-lg-none"
+            style={userState !== null ? { display: "none" } : null}
+          >
             <li className="nav-item mx-auto">
-              <a className="nav-link" href="/login/">
-                Log In
-              </a>
+              <Link className="nav-link" to="/login/">
+                Login
+              </Link>
             </li>
             <li className="nav-item mx-auto">
-              <a className="nav-link" href="/signup/">
+              <Link className="nav-link" to="/signup/">
                 Sign Up
-              </a>
+              </Link>
             </li>
           </ul>
           <div className="input-group navbar-search mx-auto mr-lg-2">
@@ -63,22 +83,56 @@ const navbar = () => {
               </button>
             </div>
           </div>
-          <form className="form-inline d-none d-lg-inline-block">
-            <a className="btn btn-light mr-lg-2" role="button" href="/login/">
+          <form
+            className="form-nav form-inline"
+            style={userState !== null ? { display: "none" } : null}
+          >
+            <Link className="btn btn-light mr-lg-2" role="button" to="/login/">
               Log In
-            </a>
-            <a
+            </Link>
+            <Link
               className="btn btn-outline-primary"
               role="button"
-              href="/signup/"
+              to="/signup/"
             >
               Sign Up
-            </a>
+            </Link>
           </form>
+          <ul
+            className="navbar-nav mt-2 mt-lg-0 mb-2 mb-lg-0"
+            style={
+              userState !== null ? { display: "flex" } : { display: "none" }
+            }
+          >
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <FaUserCircle className="userIcon" />
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/">
+                  Account Settings
+                </Link>
+                <Link className="dropdown-item" to="/">
+                  Reviews
+                </Link>
+                <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" onClick={logout}>
+                  Sign Out
+                </Link>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
   );
 };
 
-export default navbar;
+export default Navbar;

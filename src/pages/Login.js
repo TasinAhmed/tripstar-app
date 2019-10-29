@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import logImg from "../images/login.svg";
+import firebase from "../config/firebase";
 
 const Login = () => {
+  let key;
+
   const [login, setLogin] = useState({
     lEmail: "",
     lPass: ""
   });
 
-  const [valid, setValid] = useState({
+  const [alert, setAlert] = useState({
+    alert: [],
     valid: true
   });
 
@@ -20,11 +24,31 @@ const Login = () => {
   };
 
   const onSubmit = e => {
-    if (login.lEmail === "") {
-      setValid({ valid: false });
-    } else {
-      setValid({ valid: true });
+    e.preventDefault();
+    let temp = [];
+    key = 0;
+    let valid = true;
+
+    alert.alert.length = 0;
+
+    if (login.lEmail === "" || login.lPass === "") {
+      valid = false;
+      key++;
+      temp.push(<li key={key}>Fields cannot be empty</li>);
     }
+
+    setAlert({
+      alert: temp,
+      valid: valid
+    });
+
+    if (valid === true) {
+      signin(login.lEmail, login.lPass);
+    }
+  };
+
+  const signin = async (email, password) => {
+    await firebase.login(email, password);
   };
 
   return (
@@ -57,10 +81,10 @@ const Login = () => {
             ></input>
             <div
               className="alert alert-danger"
-              style={!valid.valid ? {} : { display: "none" }}
+              style={!alert.valid ? {} : { display: "none" }}
               role="alert"
             >
-              A simple danger alert—check it out!
+              {alert.alert}
             </div>
             <button
               type="submit"

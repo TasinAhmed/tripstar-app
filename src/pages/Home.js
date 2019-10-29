@@ -1,15 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import hero from "../images/hero.svg";
-import { User } from "../classes/User";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { MdRateReview } from "react-icons/md";
 import { MdUpdate } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  let tasin = new User("Tasin Ahmed", "tasin123@gmail.com");
-  console.log(tasin);
-
   return (
     <div>
       <Helmet>
@@ -23,9 +20,13 @@ const Home = () => {
               Discover over 1000+ reviews right at your fingertips. Find the
               perfect destination for your next big trip!
             </p>
-            <a className="btn btn-primary btn-lg" href="/signup/" role="button">
+            <Link
+              className="btn btn-primary btn-lg"
+              to="/signup/"
+              role="button"
+            >
               Get Started
-            </a>
+            </Link>
           </div>
           <img src={hero} className="img-fluid" alt="" />
         </div>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import { Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Reviews from "./pages/Reviews";
@@ -9,11 +9,13 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Error from "./pages/Error";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
+import ScrollToTop from "./ScrollToTop";
 
-function App() {
+const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Switch>
         <Route exact path="/">
@@ -41,6 +43,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

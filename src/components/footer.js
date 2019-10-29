@@ -5,6 +5,7 @@ import {
   FaTwitter,
   FaInstagram
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const footer = () => {
   return (
@@ -15,16 +16,16 @@ const footer = () => {
           <div className="title">NAVIGATION</div>
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/reviews/">Reviews</a>
+              <Link to="/reviews/">Reviews</Link>
             </li>
             <li>
-              <a href="/gallery/">Gallery</a>
+              <Link to="/gallery/">Gallery</Link>
             </li>
             <li>
-              <a href="/contact/">Contact</a>
+              <Link to="/contact/">Contact</Link>
             </li>
           </ul>
         </div>
@@ -32,10 +33,10 @@ const footer = () => {
           <div className="title">GET STARTED</div>
           <ul>
             <li>
-              <a href="/login/">Log In</a>
+              <Link to="/login/">Log In</Link>
             </li>
             <li>
-              <a href="/signup/">Sign Up</a>
+              <Link to="/signup/">Sign Up</Link>
             </li>
           </ul>
         </div>
@@ -58,15 +59,15 @@ const footer = () => {
         </div>
         <div className="social">
           <div className="title">FIND US ON SOCIAL MEDIA</div>
-          <a href="/">
+          <Link to="/">
             <FaFacebookF />
-          </a>
-          <a href="/">
+          </Link>
+          <Link to="/">
             <FaTwitter />
-          </a>
-          <a href="/">
+          </Link>
+          <Link to="/">
             <FaInstagram />
-          </a>
+          </Link>
         </div>
         <div className="copyright">
           &copy;2019 TripStar All Rights Reserved. Designed by{" "}

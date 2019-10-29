@@ -4,6 +4,22 @@
   text-align: center;
 }
 
+#navbarDropdown {
+  padding: 0;
+}
+
+nav .dropdown-item {
+  text-align: center;
+}
+
+.userIcon {
+  font-size: 25px;
+}
+
+.form-nav {
+  display: none;
+}
+
 .navbar-search {
   max-width: 300px;
 
@@ -44,6 +60,27 @@
 
     &:hover path {
       color: $blue;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .form-nav {
+    display: inline-block;
+  }
+
+  #navbarDropdown {
+    padding-left: 10px;
+  }
+
+  nav {
+    .dropdown-menu {
+      left: -225%;
+      top: 40px;
+    }
+
+    .dropdown-item {
+      text-align: left;
     }
   }
 }

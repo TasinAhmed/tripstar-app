@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import signImg from "../images/signup.svg";
+import firebase from "../config/firebase";
 
 const Signup = () => {
-  let key = 0;
+  let key;
 
   const [signup, setSignup] = useState({
     sfName: "",
     slName: "",
     sEmail: "",
     sPass: "",
-    sPhone: "",
-    alert: []
+    sPhone: ""
   });
 
-  const [valid, setValid] = useState({
+  const [alert, setAlert] = useState({
+    alert: [],
     valid: true
   });
 
@@ -28,33 +29,74 @@ const Signup = () => {
   const onSubmit = e => {
     e.preventDefault();
     let temp = [];
+    key = 0;
+    let valid = true;
 
-    signup.alert.length = 0;
+    alert.alert.length = 0;
 
     if (
-      !/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/.test(
-        signup.sPass
-      )
+      signup.sfName === "" ||
+      signup.slName === "" ||
+      signup.sPass === "" ||
+      signup.sEmail === ""
     ) {
-      setValid({ valid: false });
+      valid = false;
       key++;
-      temp.push(<li key={key}>Password Empty</li>);
-    } else {
-      setValid({ valid: true });
+      temp.push(<li key={key}>Fields cannot be empty</li>);
     }
 
-    if (signup.sEmail === "") {
-      setValid({ valid: false });
-      key++;
-      temp.push(<li key={key}>Email Empty</li>);
-    } else {
-      setValid({ valid: true });
+    if (signup.sPass !== "") {
+      if (!/(?=.*[a-z])/.test(signup.sPass)) {
+        valid = false;
+        key++;
+        temp.push(
+          <li key={key}>Password must contain at least 1 lowercase letter</li>
+        );
+      }
+
+      if (!/(?=.*[A-Z])/.test(signup.sPass)) {
+        valid = false;
+        key++;
+        temp.push(
+          <li key={key}>Password must contain at least 1 capital letter</li>
+        );
+      }
+
+      if (!/(?=.*[0-9])/.test(signup.sPass)) {
+        valid = false;
+        key++;
+        temp.push(<li key={key}>Password must contain at least 1 number</li>);
+      }
+
+      if (!/(?=.*[!@#\$%\^&\*])/.test(signup.sPass)) {
+        valid = false;
+        key++;
+        temp.push(
+          <li key={key}>Password must contain at least 1 special character</li>
+        );
+      }
+
+      if (signup.sPass.length < 6 || signup.sPass.length > 15) {
+        valid = false;
+        key++;
+        temp.push(
+          <li key={key}>Password must be between 6 to 15 characters long</li>
+        );
+      }
     }
 
-    setSignup({
-      ...signup,
-      alert: temp
+    setAlert({
+      alert: temp,
+      valid: valid
     });
+
+    if (valid === true) {
+      register(signup.sEmail, signup.sPass);
+    }
+  };
+
+  const register = async (email, password) => {
+    await firebase.register(email, password);
   };
 
   return (
@@ -108,9 +150,9 @@ const Signup = () => {
             <div
               className="alert alert-danger"
               role="alert"
-              style={!valid.valid ? {} : { display: "none" }}
+              style={!alert.valid ? {} : { display: "none" }}
             >
-              {signup.alert}
+              {alert.alert}
             </div>
             <button
               type="submit"

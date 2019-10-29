@@ -24,6 +24,10 @@
 
   .alert-danger {
     margin: 0;
+    li {
+      text-align: left;
+      margin-left: 10px;
+    }
   }
 }
 
