@@ -8,7 +8,8 @@ const ObjectAdd = () => {
 
   const [ObjectAdd, setObjectAdd] = useState({
     obName: "",
-    obAddress: "",
+    obCoordinates: "",
+	  obDesc = ""
   });
 
   const [alert, setAlert] = useState({
@@ -33,7 +34,8 @@ const ObjectAdd = () => {
 
     if (
       ObjectAdd.obName === "" ||
-      ObjectAdd.obAddress === ""
+      ObjectAdd.obCoordinates === ""||
+      ObjectAdd.obDesc === ""
     ) {
       valid = false;
       key++;
@@ -47,7 +49,7 @@ const ObjectAdd = () => {
     });
 
     if (valid === true) {
-      register(ObjectAdd.obName, ObjectAdd.obAddress);
+      register(ObjectAdd.obName, ObjectAdd.obCoordinates, ObjectAdd.obDesc);;
     }
   };
 
