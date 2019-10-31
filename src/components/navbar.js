@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import firebase from "../config/firebase";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-const Navbar = props => {
+const Navbar = ({ history }) => {
   const [userState, setUserState] = useState(null);
 
-  useEffect(() => {
-    firebase.getUserState().then(user => {
-      if (user) {
-        setUserState(user);
-      }
-    });
+  firebase.auth.onAuthStateChanged(user => {
+    if (user) {
+      setUserState(user);
+    }
   });
 
   const logout = () => {
     firebase.logout();
+    const user = firebase.auth.currentUser;
+    if (user !== null) {
+      history.push("/");
+    }
     setUserState(null);
   };
 
@@ -112,6 +114,7 @@ const Navbar = props => {
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                to="#"
               >
                 <FaUserCircle className="userIcon" />
               </Link>
@@ -123,7 +126,7 @@ const Navbar = props => {
                   Reviews
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" onClick={logout}>
+                <Link to="#" className="dropdown-item" onClick={logout}>
                   Sign Out
                 </Link>
               </div>
@@ -135,4 +138,4 @@ const Navbar = props => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

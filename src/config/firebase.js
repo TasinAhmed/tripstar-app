@@ -26,9 +26,6 @@ class Firebase {
     const user = await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        window.location.href = "/";
-      })
       .catch(error => {
         console.log(error);
       });
@@ -39,9 +36,6 @@ class Firebase {
     const user = await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        window.location.href = "/";
-      })
       .catch(error => {
         console.log(error);
       });
@@ -52,9 +46,6 @@ class Firebase {
     await firebase
       .auth()
       .signOut()
-      .then(() => {
-        window.location.href = "/";
-      })
       .catch(error => {
         console.log(error);
       });

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import logImg from "../images/login.svg";
 import firebase from "../config/firebase";
+import { withRouter } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ history }) => {
   let key;
 
   const [login, setLogin] = useState({
@@ -49,6 +50,10 @@ const Login = () => {
 
   const signin = async (email, password) => {
     await firebase.login(email, password);
+    const user = firebase.auth.currentUser;
+    if (user !== null) {
+      history.push("/");
+    }
   };
 
   return (
@@ -101,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

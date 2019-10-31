@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import signImg from "../images/signup.svg";
 import firebase from "../config/firebase";
+import { withRouter } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ history }) => {
   let key;
 
   const [signup, setSignup] = useState({
@@ -97,6 +98,10 @@ const Signup = () => {
 
   const register = async (email, password) => {
     await firebase.register(email, password);
+    const user = firebase.auth.currentUser;
+    if (user !== null) {
+      history.push("/");
+    }
   };
 
   return (
@@ -169,4 +174,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default withRouter(Signup);
