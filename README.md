@@ -15,6 +15,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Link to the site:
 https://tripstar2.netlify.com/
 
+##Github link:
+https://github.com/TasinAhmed/tripstar-app
+
 ## Available Scripts
 
 In the project directory, you can run:
