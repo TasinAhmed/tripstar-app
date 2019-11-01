@@ -1,4 +1,22 @@
+# tripstar
+
+#Developer 1: 
+#Name:Kanakabha Choudhri
+#Student Id: 400084778
+#Course: COMPSCI 4WW3
+
+#Developer 2: 
+#Name:Tasin Ahmed
+#Student Id: 400052747
+#Course: COMPSCI 4WW3
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Link to the site:
+https://tripstar2.netlify.com/
+
+##Github link:
+https://github.com/TasinAhmed/tripstar-app
 
 ## Available Scripts
 
