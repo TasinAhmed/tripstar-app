@@ -80,9 +80,14 @@ const Navbar = ({ history }) => {
               aria-describedby="button-addon2"
             />
             <div className="input-group-append">
-              <button className="btn" type="submit" id="button-addon2">
+              <Link
+                className="btn"
+                type="submit"
+                id="button-addon2"
+                to="/results/"
+              >
                 <FaSearch />
-              </button>
+              </Link>
             </div>
           </div>
           <form

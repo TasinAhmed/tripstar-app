@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Error from "./pages/Error";
 import Footer from "./components/Footer";
+import Results from "./pages/Results";
 import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
@@ -35,6 +36,9 @@ const App = () => {
         </Route>
         <Route exact path="/signup/">
           <Signup />
+        </Route>
+        <Route exact path="/results/">
+          <Results />
         </Route>
         <Route>
           <Error />

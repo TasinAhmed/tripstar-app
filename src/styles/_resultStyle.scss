@@ -1,0 +1,26 @@
+.results {
+  h4 {
+    margin: 25px auto;
+    text-align: center;
+  }
+
+  .result-map {
+    height: 200px;
+  }
+}
+
+@media (min-width: 576px) {
+  .results {
+    .result-map {
+      height: 300px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .results {
+    .result-map {
+      height: 400px;
+    }
+  }
+}

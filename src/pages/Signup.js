@@ -27,7 +27,7 @@ const Signup = ({ history }) => {
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     let temp = [];
     key = 0;
@@ -92,15 +92,11 @@ const Signup = ({ history }) => {
     });
 
     if (valid === true) {
-      register(signup.sEmail, signup.sPass);
-    }
-  };
-
-  const register = async (email, password) => {
-    await firebase.register(email, password);
-    const user = firebase.auth.currentUser;
-    if (user !== null) {
-      history.push("/");
+      await firebase.register(signup.sEmail, signup.sPass);
+      const user = firebase.auth.currentUser;
+      if (user !== null) {
+        history.push("/");
+      }
     }
   };
 

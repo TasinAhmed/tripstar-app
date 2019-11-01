@@ -24,7 +24,7 @@ const Login = ({ history }) => {
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     let temp = [];
     key = 0;
@@ -44,15 +44,11 @@ const Login = ({ history }) => {
     });
 
     if (valid === true) {
-      signin(login.lEmail, login.lPass);
-    }
-  };
-
-  const signin = async (email, password) => {
-    await firebase.login(email, password);
-    const user = firebase.auth.currentUser;
-    if (user !== null) {
-      history.push("/");
+      await firebase.login(login.lEmail, login.lPass);
+      const user = firebase.auth.currentUser;
+      if (user !== null) {
+        history.push("/");
+      }
     }
   };
 
