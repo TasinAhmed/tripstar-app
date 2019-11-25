@@ -1,24 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
-import firebase from "../config/firebase";
+import app from "../config/firebase";
 import { Link, withRouter } from "react-router-dom";
+import { AuthContext } from "../config/auth";
 
 const Navbar = ({ history }) => {
-  const [userState, setUserState] = useState(null);
-
-  firebase.auth.onAuthStateChanged(user => {
-    if (user) {
-      setUserState(user);
-    }
-  });
+  const { currentUser } = useContext(AuthContext);
 
   const logout = () => {
-    firebase.logout();
-    const user = firebase.auth.currentUser;
-    if (user !== null) {
-      history.push("/");
-    }
-    setUserState(null);
+    app
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/");
+      });
   };
 
   return (
@@ -41,8 +36,12 @@ const Navbar = ({ history }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item mx-auto">
-              <Link className="nav-link" to="/reviews/">
-                Write a Review
+              <Link
+                className="nav-link"
+                to="/location/"
+                style={currentUser === null ? { display: "none" } : null}
+              >
+                Add Location
               </Link>
             </li>
             <li className="nav-item mx-auto">
@@ -58,7 +57,7 @@ const Navbar = ({ history }) => {
           </ul>
           <ul
             className="navbar-nav mx-auto d-lg-none"
-            style={userState !== null ? { display: "none" } : null}
+            style={currentUser !== null ? { display: "none" } : null}
           >
             <li className="nav-item mx-auto">
               <Link className="nav-link" to="/login/">
@@ -92,7 +91,7 @@ const Navbar = ({ history }) => {
           </div>
           <form
             className="form-nav form-inline"
-            style={userState !== null ? { display: "none" } : null}
+            style={currentUser !== null ? { display: "none" } : null}
           >
             <Link className="btn btn-light mr-lg-2" role="button" to="/login/">
               Log In
@@ -108,7 +107,7 @@ const Navbar = ({ history }) => {
           <ul
             className="navbar-nav mt-2 mt-lg-0 mb-2 mb-lg-0"
             style={
-              userState !== null ? { display: "flex" } : { display: "none" }
+              currentUser !== null ? { display: "flex" } : { display: "none" }
             }
           >
             <li className="nav-item dropdown">

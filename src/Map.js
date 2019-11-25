@@ -6,14 +6,11 @@ import {
   Marker
 } from "react-google-maps";
 
-const Map = () => {
+const Map = ({ lat, lng }) => {
   return (
     <div>
-      <GoogleMap
-        defaultZoom={13}
-        defaultCenter={{ lat: 43.642567, lng: -79.387054 }}
-      >
-        <Marker position={{ lat: 43.642567, lng: -79.387054 }} />
+      <GoogleMap defaultZoom={13} defaultCenter={{ lat: lat, lng: lng }}>
+        <Marker position={{ lat: lat, lng: lng }} />
       </GoogleMap>
     </div>
   );

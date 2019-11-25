@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Helmet } from "react-helmet";
 import signImg from "../images/signup.svg";
-import firebase from "../config/firebase";
+import app from "../config/firebase";
 import { withRouter } from "react-router-dom";
 
 const Signup = ({ history }) => {
@@ -27,7 +27,7 @@ const Signup = ({ history }) => {
     });
   };
 
-  const onSubmit = async e => {
+  const onSubmit = useCallback(async e => {
     e.preventDefault();
     let temp = [];
     key = 0;
@@ -92,13 +92,31 @@ const Signup = ({ history }) => {
     });
 
     if (valid === true) {
-      await firebase.register(signup.sEmail, signup.sPass);
-      const user = firebase.auth.currentUser;
-      if (user !== null) {
-        history.push("/");
+      try {
+        await app
+          .auth()
+          .createUserWithEmailAndPassword(signup.sEmail, signup.sPass);
+        app.auth().onAuthStateChanged(user => {
+          if (user) {
+            history.push("/");
+            app
+              .firestore()
+              .collection("user")
+              .add({
+                email: signup.sEmail,
+                f_name: signup.sfName,
+                l_name: signup.slName,
+                password: signup.sPass,
+                phone: signup.sPhone,
+                user_id: user.uid
+              });
+          }
+        });
+      } catch (error) {
+        console.log(error);
       }
     }
-  };
+  });
 
   return (
     <>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Helmet } from "react-helmet";
 import logImg from "../images/login.svg";
-import firebase from "../config/firebase";
+import app from "../config/firebase";
 import { withRouter } from "react-router-dom";
 
 const Login = ({ history }) => {
@@ -24,7 +24,7 @@ const Login = ({ history }) => {
     });
   };
 
-  const onSubmit = async e => {
+  const onSubmit = useCallback(async e => {
     e.preventDefault();
     let temp = [];
     key = 0;
@@ -44,13 +44,18 @@ const Login = ({ history }) => {
     });
 
     if (valid === true) {
-      await firebase.login(login.lEmail, login.lPass);
-      const user = firebase.auth.currentUser;
-      if (user !== null) {
-        history.push("/");
+      try {
+        await app.auth().signInWithEmailAndPassword(login.lEmail, login.lPass);
+        app.auth().onAuthStateChanged(user => {
+          if (user) {
+            history.push("/");
+          }
+        });
+      } catch (error) {
+        console.log(error);
       }
     }
-  };
+  });
 
   return (
     <>

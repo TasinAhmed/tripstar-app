@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 const Rating = ({ history }) => {
   const showObject = () => {
-    history.push("/");
+    history.push("/object/");
   };
 
   return (

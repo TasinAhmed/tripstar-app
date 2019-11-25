@@ -1,0 +1,70 @@
+.local {
+  padding-bottom: 25px;
+
+  .loc-search {
+    margin-bottom: 10px;
+  }
+
+  .loc-suggestion {
+    padding: 5px;
+  }
+
+  .loc-suggestion:hover {
+    cursor: pointer;
+  }
+
+  .loc-submit {
+    width: 100%;
+  }
+
+  .loc-title {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .loc-photo {
+    margin-bottom: 25px;
+  }
+
+  .loc-description {
+    margin: 25px 0;
+    resize: none;
+    height: 200px;
+  }
+
+  .drop-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dropzone {
+    border: 2px dashed lightgrey;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    transition: all 0.1s ease-in;
+    border-radius: 5px;
+    color: lightgrey;
+    p {
+      padding: 0;
+    }
+
+    .file-text {
+      text-align: center;
+    }
+
+    .image-icon {
+      justify-self: center;
+      font-size: 45px;
+    }
+
+    &:hover {
+      border: 2px dashed #007bff;
+      background-color: #f2f9ff;
+      color: #007bff;
+    }
+  }
+}

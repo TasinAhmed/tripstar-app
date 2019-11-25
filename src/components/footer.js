@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const footer = () => {
+const Footer = () => {
   return (
     <footer>
       <div className="container">
@@ -19,7 +19,7 @@ const footer = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/reviews/">Reviews</Link>
+              <Link to="/location/">Add Location</Link>
             </li>
             <li>
               <Link to="/gallery/">Gallery</Link>
@@ -78,4 +78,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

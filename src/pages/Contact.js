@@ -1,52 +1,16 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import contactImg from "../images/contact.svg";
+import app from "../config/firebase";
 
 const Contact = () => {
-  let key;
-  let valid = true;
+  const [user, setUser] = useState(null);
 
-  const [contact, setContact] = useState({
-    cName: "",
-    cEmail: "",
-    cSubject: "",
-    cMessage: ""
-  });
-
-  const [alert, setAlert] = useState({
-    alert: [],
-    valid: true
-  });
-
-  const changeHandler = e => {
-    setContact({
-      ...contact,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const onSubmit = e => {
-    e.preventDefault();
-    let temp = [];
-    key = 0;
-
-    alert.alert.length = 0;
-
-    if (
-      contact.cEmail === "" ||
-      contact.cName === "" ||
-      contact.cMessage === ""
-    ) {
-      valid = false;
-      key++;
-      temp.push(<li key={key}>Fields cannot be empty</li>);
+  app.auth().onAuthStateChanged(user => {
+    if (user) {
+      setUser(user);
     }
-
-    setAlert({
-      alert: temp,
-      valid: valid
-    });
-  };
+  });
 
   return (
     <div>
@@ -63,7 +27,7 @@ const Contact = () => {
               name="cName"
               className="form-control cont-name"
               required
-              onChange={changeHandler}
+              style={user !== null ? { display: "none" } : null}
             />
             <input
               type="email"
@@ -71,14 +35,14 @@ const Contact = () => {
               className="form-control cont-email"
               name="cEmail"
               required
-              onChange={changeHandler}
+              style={user !== null ? { display: "none" } : null}
             />
             <input
               type="text"
-              placeholder="Subject (Optional)"
+              placeholder="Subject"
               className="form-control subject"
               name="cSubject"
-              onChange={changeHandler}
+              required
             />
             <textarea
               className="form-control"
@@ -86,20 +50,8 @@ const Contact = () => {
               placeholder="Message"
               required
               name="cMessage"
-              onChange={changeHandler}
             ></textarea>
-            <div
-              className="alert alert-danger"
-              style={!alert.valid ? {} : { display: "none" }}
-              role="alert"
-            >
-              {alert.alert}
-            </div>
-            <button
-              onClick={onSubmit}
-              className="btn btn-primary"
-              type="submit"
-            >
+            <button className="btn btn-primary" type="submit">
               Send
             </button>
           </form>

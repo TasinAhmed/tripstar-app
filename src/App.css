@@ -800,6 +800,98 @@ nav .dropdown-item {
   }
 }
 
+.object {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.object .CN {
+  max-width: 500px;
+}
+
+.local {
+  padding-bottom: 25px;
+}
+
+.local .loc-search {
+  margin-bottom: 10px;
+}
+
+.local .loc-suggestion {
+  padding: 5px;
+}
+
+.local .loc-suggestion:hover {
+  cursor: pointer;
+}
+
+.local .loc-submit {
+  width: 100%;
+}
+
+.local .loc-title {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.local .loc-photo {
+  margin-bottom: 25px;
+}
+
+.local .loc-description {
+  margin: 25px 0;
+  resize: none;
+  height: 200px;
+}
+
+.local .drop-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.local .dropzone {
+  border: 2px dashed lightgrey;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 125px;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+  border-radius: 5px;
+  color: lightgrey;
+}
+
+.local .dropzone p {
+  padding: 0;
+}
+
+.local .dropzone .file-text {
+  text-align: center;
+}
+
+.local .dropzone .image-icon {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 45px;
+}
+
+.local .dropzone:hover {
+  border: 2px dashed #007bff;
+  background-color: #f2f9ff;
+  color: #007bff;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
