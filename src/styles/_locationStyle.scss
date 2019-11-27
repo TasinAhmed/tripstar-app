@@ -1,16 +1,29 @@
 .local {
   padding-bottom: 25px;
 
+  .alert-danger {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    li {
+      text-align: left;
+      margin-left: 10px;
+    }
+  }
+
+  .mark-icon {
+    margin-right: 10px;
+  }
+
   .loc-search {
     margin-bottom: 10px;
   }
 
   .loc-suggestion {
     padding: 5px;
-  }
 
-  .loc-suggestion:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .loc-submit {
@@ -65,6 +78,7 @@
       border: 2px dashed #007bff;
       background-color: #f2f9ff;
       color: #007bff;
+      cursor: pointer;
     }
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import CNTower from "../images/CN.jpeg";
-import Map from "../Map";
 
 const Object = () => {
   return (
@@ -14,16 +13,6 @@ const Object = () => {
         doloremque dicta alias nesciunt, veritatis vitae quis dignissimos. Amet
         veniam, vel sit totam ipsum aliquam reiciendis unde minus animi tempore
         laborum sunt eveniet.
-      </div>
-      <div className="result-map">
-        <Map
-          googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?&v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAkPoWjQ7YoLAoE_kIr1y6w9ORSDs_RLa0"
-          }
-          loadingElement={<div style={{ height: "100%" }}></div>}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
       </div>
     </div>
   );

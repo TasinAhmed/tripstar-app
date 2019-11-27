@@ -814,6 +814,20 @@ nav .dropdown-item {
   padding-bottom: 25px;
 }
 
+.local .alert-danger {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.local .alert-danger li {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.local .mark-icon {
+  margin-right: 10px;
+}
+
 .local .loc-search {
   margin-bottom: 10px;
 }
@@ -890,6 +904,7 @@ nav .dropdown-item {
   border: 2px dashed #007bff;
   background-color: #f2f9ff;
   color: #007bff;
+  cursor: pointer;
 }
 
 * {

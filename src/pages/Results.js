@@ -1,11 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Rating from "../components/Rating";
-import Map from "../Map";
+import app from "../config/firebase";
+import {
+  GoogleMap,
+  withScriptjs,
+  withGoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
 
 const Results = () => {
-  const [selected, setSelected] = useState(null);
+  const [places, setPlaces] = useState([]);
+  const [latArr, setLatArr] = useState([]);
+  const [lngArr, setLngArr] = useState([]);
 
+  const Map = withScriptjs(
+    withGoogleMap(({ lat, lng }) => {
+      return (
+        <div>
+          <GoogleMap
+            defaultZoom={2}
+            defaultCenter={{ lat: lat, lng: lng }}
+            center={{
+              lat: (Math.max(...latArr) + Math.min(...latArr)) / 2.0,
+              lng: (Math.max(...lngArr) + Math.min(...lngArr)) / 2.0
+            }}
+          >
+            {places.map(x => (
+              <Marker position={{ lat: x.latitude, lng: x.longitude }} />
+            ))}
+          </GoogleMap>
+        </div>
+      );
+    })
+  );
+
+  useEffect(() => {
+    app
+      .firestore()
+      .collection("location")
+      .get()
+      .then(querySnapshot => {
+        let arr = [];
+        let lat = [];
+        let lng = [];
+        querySnapshot.forEach(doc => {
+          arr.push(doc.data());
+          lat.push(doc.data().latitude);
+          lng.push(doc.data().longitude);
+        });
+        setPlaces(arr);
+        setLatArr(lat);
+        setLngArr(lng);
+      });
+  }, []);
   return (
     <>
       <Helmet>
@@ -23,11 +72,9 @@ const Results = () => {
             lng={-79.387054}
           />
         </div>
-        <Rating location="CN Tower" rating="4/5" review="Loved It!" />
-        <Rating location="CN Tower" rating="4/5" review="Loved It!" />
-        <Rating location="CN Tower" rating="4/5" review="Loved It!" />
-        <Rating location="CN Tower" rating="4/5" review="Loved It!" />
-        <Rating location="CN Tower" rating="4/5" review="Loved It!" />
+        {places.map(place => (
+          <Rating loc={place} review={place.description} />
+        ))}
       </div>
     </>
   );

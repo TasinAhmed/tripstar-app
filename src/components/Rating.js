@@ -1,25 +1,31 @@
-import React from "react";
-import image from "../images/200.png";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
+import app from "../config/firebase";
 
-const Rating = ({ history }) => {
+const Rating = ({ history, loc, review }) => {
   const showObject = () => {
     history.push("/object/");
   };
 
+  const [image, setImage] = useState();
+
+  useEffect(() => {
+    app
+      .firestore()
+      .collection("images")
+      .where("place_id", "==", loc.location_id)
+      .get()
+      .then(querySnapshot => {
+        setImage(querySnapshot.docs[0].data().url);
+      });
+  }, []);
+
   return (
     <div className="card review-card" onClick={showObject}>
       <img src={image} alt="" />
-      <p className="locTitle">CN Tower</p>
+      <p className="locTitle">{loc.name}</p>
       <div className="rating">⭐⭐⭐⭐⭐</div>
-      <div className="review">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi a quae,
-        voluptatibus possimus officia facilis repellat quo unde sit natus
-        doloribus, hic ut temporibus ullam repellendus repudiandae quasi debitis
-        perspiciatis esse cumque molestias numquam rem odio. Sunt, voluptate
-        nemo ab similique rem saepe quod aut dolorem maiores quam obcaecati
-        excepturi?
-      </div>
+      <div className="review">{review}</div>
     </div>
   );
 };

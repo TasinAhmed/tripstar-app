@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import {
   withScriptjs,
@@ -14,19 +14,105 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import { MdLocationOn } from "react-icons/md";
+import { withRouter } from "react-router-dom";
+import { storage } from "../config/firebase";
 
-const Location = () => {
+const Location = ({ history }) => {
   const { currentUser } = useContext(AuthContext);
   const [address, setAddress] = useState("");
   const [cords, setCords] = useState({ lat: null, lng: null });
   const [name, setName] = useState("");
   const [placeID, setPlaceID] = useState("");
   const [desc, setDesc] = useState("");
+  const [files, setFiles] = useState([]);
+  const [selected, setSelected] = useState(false);
+  let key;
+  const [alert, setAlert] = useState({
+    alert: [],
+    valid: true
+  });
+
+  useEffect(() => {
+    setSelected(false);
+  }, [address]);
+
+  const onClick = useCallback(async e => {
+    e.preventDefault();
+    setFiles(
+      files.map(file =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })
+      )
+    );
+
+    let temp = [];
+    key = 0;
+    let valid = true;
+
+    alert.alert.length = 0;
+
+    if (address === "" || desc === "") {
+      valid = false;
+      key++;
+      temp.push(<li key={key}>Fields cannot be empty</li>);
+    }
+
+    if (files.length === 0) {
+      valid = false;
+      key++;
+      temp.push(<li key={key}>Upload an image</li>);
+    }
+
+    if (selected === false) {
+      valid = false;
+      key++;
+      temp.push(<li key={key}>Select a valid location</li>);
+    }
+
+    setAlert({
+      alert: temp,
+      valid: valid
+    });
+
+    if (valid === true) {
+      files.map((file, key) => {
+        storage
+          .ref(`images/${placeID}/${file.path}`)
+          .put(file)
+          .then(snapshot =>
+            snapshot.ref.getDownloadURL().then(url => {
+              app
+                .firestore()
+                .collection("images")
+                .add({ url: url, place_id: placeID });
+            })
+          );
+      });
+      app
+        .firestore()
+        .collection("location")
+        .add({
+          name: name,
+          address: address,
+          location_id: placeID,
+          latitude: cords.lat,
+          longitude: cords.lng,
+          user_id: currentUser.uid,
+          description: desc
+        });
+
+      history.push("/");
+    }
+  });
+
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCords(latLng);
+    setSelected(true);
     setName(value.substr(0, value.indexOf(",")));
     setPlaceID(results[0].place_id);
   };
@@ -63,7 +149,6 @@ const Location = () => {
   };
 
   const Previews = props => {
-    const [files, setFiles] = useState([]);
     const { getRootProps, getInputProps } = useDropzone({
       accept: "image/*",
       onDrop: acceptedFiles => {
@@ -95,7 +180,7 @@ const Location = () => {
     return (
       <section className="drop-section">
         <div {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} multiple={false} required />
+          <input {...getInputProps()} required />
           <div className="file-text">
             <FaImage className="image-icon" />
             <p>Choose an image or drag it here</p>
@@ -109,7 +194,7 @@ const Location = () => {
   return (
     <div>
       <Helmet>
-        <title>TripStar | Reviews</title>
+        <title>TripStar | Add Location</title>
       </Helmet>
       <div className="local container">
         <h4 className="loc-title">Add a location</h4>
@@ -131,7 +216,7 @@ const Location = () => {
                   {...getInputProps({ placeholder: "Search Location" })}
                 />
                 <div>
-                  {suggestions.map(suggestion => {
+                  {suggestions.map((suggestion, key) => {
                     const style = {
                       backgroundColor: suggestion.active
                         ? "rgba(0, 0, 0, .06)"
@@ -142,6 +227,7 @@ const Location = () => {
                         className="loc-suggestion"
                         {...getSuggestionItemProps(suggestion, { style })}
                       >
+                        <MdLocationOn key={key} className="mark-icon" />
                         {suggestion.description}
                       </div>
                     );
@@ -157,23 +243,17 @@ const Location = () => {
             required
           ></textarea>
           <Previews />
+          <div
+            className="alert alert-danger"
+            role="alert"
+            style={!alert.valid ? {} : { display: "none" }}
+          >
+            {alert.alert}
+          </div>
           <button
             type="submit"
             className="btn btn-primary loc-submit"
-            onClick={() => {
-              app
-                .firestore()
-                .collection("location")
-                .add({
-                  name: name,
-                  address: address,
-                  location_id: placeID,
-                  latitude: cords.lat,
-                  longitude: cords.lng,
-                  user_id: currentUser.uid,
-                  description: desc
-                });
-            }}
+            onClick={onClick}
           >
             Submit
           </button>
@@ -183,4 +263,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default withRouter(Location);
