@@ -1,11 +1,5 @@
 # tripstar
 
-#Developer 1: 
-#Name:Kanakabha Choudhri
-#Student Id: 400084778
-#Course: COMPSCI 4WW3
-
-#Developer 2: 
 #Name:Tasin Ahmed
 #Student Id: 400052747
 #Course: COMPSCI 4WW3
