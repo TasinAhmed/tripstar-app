@@ -2,39 +2,33 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Rating from "../components/Rating";
 import app from "../config/firebase";
-import {
-  GoogleMap,
-  withScriptjs,
-  withGoogleMap,
-  Marker,
-  InfoWindow
-} from "react-google-maps";
+import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
 
 const Results = () => {
   const [places, setPlaces] = useState([]);
   const [latArr, setLatArr] = useState([]);
   const [lngArr, setLngArr] = useState([]);
 
-  const Map = withScriptjs(
-    withGoogleMap(({ lat, lng }) => {
-      return (
-        <div>
-          <GoogleMap
-            defaultZoom={2}
-            defaultCenter={{ lat: lat, lng: lng }}
-            center={{
-              lat: (Math.max(...latArr) + Math.min(...latArr)) / 2.0,
-              lng: (Math.max(...lngArr) + Math.min(...lngArr)) / 2.0
-            }}
-          >
-            {places.map(x => (
-              <Marker position={{ lat: x.latitude, lng: x.longitude }} />
-            ))}
-          </GoogleMap>
-        </div>
-      );
-    })
-  );
+  const Map = withGoogleMap(() => {
+    return (
+      <div>
+        <GoogleMap
+          defaultZoom={2}
+          center={{
+            lat: 0,
+            lng: 0
+          }}
+        >
+          {places.map((x, key) => (
+            <Marker
+              key={key}
+              position={{ lat: x.latitude, lng: x.longitude }}
+            />
+          ))}
+        </GoogleMap>
+      </div>
+    );
+  });
 
   useEffect(() => {
     app
@@ -68,12 +62,10 @@ const Results = () => {
             loadingElement={<div style={{ height: "100%" }}></div>}
             containerElement={<div style={{ height: `100%` }} />}
             mapElement={<div style={{ height: `100%` }} />}
-            lat={43.642567}
-            lng={-79.387054}
           />
         </div>
-        {places.map(place => (
-          <Rating loc={place} review={place.description} />
+        {places.map((place, key) => (
+          <Rating key={key} loc={place} review={place.description} />
         ))}
       </div>
     </>

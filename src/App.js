@@ -11,7 +11,7 @@ import Signup from "./pages/Signup";
 import Error from "./pages/Error";
 import Footer from "./components/Footer";
 import Results from "./pages/Results";
-import Object from "./pages/Object";
+import Item from "./pages/Item";
 import ScrollToTop from "./ScrollToTop";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./config/auth";
@@ -31,7 +31,11 @@ const App = () => {
           <PublicRoute exact path="/login/" component={Login} />
           <PublicRoute exact path="/signup/" component={Signup} />
           <Route exact path="/results/" component={Results} />
-          <Route exact path="/object/" component={Object} />
+          <PrivateRoute
+            exact
+            path="/object/:id"
+            component={({ match }) => <Item id={match.params.id} />}
+          />
           <Route exact path="/" component={Home} />
           <Route component={Error} />
         </Switch>
