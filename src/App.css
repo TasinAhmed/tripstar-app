@@ -847,7 +847,7 @@ nav .dropdown-item {
   padding: 25px;
 }
 
-.item-place .item-rev {
+.item-place .rev-write {
   width: 100%;
   height: 300px;
   display: -ms-grid;
@@ -858,7 +858,7 @@ nav .dropdown-item {
   padding: 15px;
 }
 
-.item-place .item-rev .user-info {
+.item-place .rev-write .user-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -875,22 +875,22 @@ nav .dropdown-item {
   height: 100%;
 }
 
-.item-place .item-rev .user-info svg {
+.item-place .rev-write .user-info svg {
   font-size: 40px;
   color: #4a4a4b;
 }
 
-.item-place .item-rev .rev-title {
+.item-place .rev-write .rev-title {
   margin-bottom: 15px;
 }
 
-.item-place .item-rev .user-rev {
+.item-place .rev-write .user-rev {
   resize: none;
   height: 100%;
   margin: 15px 0;
 }
 
-.item-place .item-rev .rev-right {
+.item-place .rev-write .rev-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -898,6 +898,10 @@ nav .dropdown-item {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.item-place .rev-write .rev-star {
+  width: auto;
 }
 
 .local {

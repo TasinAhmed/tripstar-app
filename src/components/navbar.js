@@ -1,12 +1,18 @@
+// Website Navigation Bar
+
+// Import classes
 import React, { useState, useContext } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import app from "../config/firebase";
 import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../config/auth";
 
+// NavBar component
 const Navbar = ({ history }) => {
+  // Get the current logged in user
   const { currentUser } = useContext(AuthContext);
 
+  // Logout the current user and return to home page
   const logout = () => {
     app
       .auth()
@@ -36,6 +42,7 @@ const Navbar = ({ history }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item mx-auto">
+              {/* If user is not logged in, hide add location. Otherwise show */}
               <Link
                 className="nav-link"
                 to="/location/"
@@ -55,6 +62,7 @@ const Navbar = ({ history }) => {
               </Link>
             </li>
           </ul>
+          {/* If user is logged in, hide login/signup button. Otherwise show */}
           <ul
             className="navbar-nav mx-auto d-lg-none"
             style={currentUser !== null ? { display: "none" } : null}

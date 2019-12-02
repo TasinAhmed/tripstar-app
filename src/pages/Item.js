@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import app from "../config/firebase";
 import { Rating } from "@material-ui/lab";
 import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
-import { FaUserCircle } from "react-icons/fa";
+import WriteReview from "../components/RevWrite";
+import { AuthContext } from "../config/auth";
+import Review from "../components/Review";
 
 const Item = ({ id }) => {
   const [image, setImage] = useState();
   const [place, setPlace] = useState("");
+  const [review, setReview] = useState([]);
+
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     app
@@ -24,6 +29,18 @@ const Item = ({ id }) => {
       .get()
       .then(querySnapshot => {
         setImage(querySnapshot.docs[0].data().url);
+      });
+
+    let arr = [];
+    app
+      .firestore()
+      .collection("review")
+      .where("location_id", "==", id)
+      .get()
+      .then(querySnapshot => {
+        //setReview(querySnapshot.docs[0].data().url);
+        querySnapshot.docs.map(x => arr.push(x.data()));
+        setReview(arr);
       });
   }, []);
 
@@ -59,29 +76,10 @@ const Item = ({ id }) => {
           mapElement={<div style={{ height: `100%` }} />}
         />
       </div>
-      <div className="item-rev-cont">
-        <div className="item-rev card">
-          <div className="user-info">
-            <FaUserCircle />
-            <div className="rev-name">Tasin</div>
-          </div>
-          <form className="rev-right">
-            <input
-              type="text"
-              placeholder="Title of your review"
-              className="rev-title form-control"
-              required
-            />
-            <Rating size="small" />
-            <textarea
-              placeholder="Your review"
-              className="user-rev form-control"
-              required
-            />
-            <button className="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
+      <WriteReview id={id} />
+      {review.map(x => (
+        <Review />
+      ))}
     </div>
   );
 };

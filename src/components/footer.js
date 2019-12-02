@@ -1,3 +1,6 @@
+// Website footer
+
+// Import
 import React from "react";
 import {
   FaPaperPlane,
@@ -7,11 +10,13 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+// Footer component
 const Footer = () => {
   return (
     <footer>
       <div className="container">
         <div className="title brand display-4">TripStar</div>
+        {/* Links to other pages */}
         <div className="navigation">
           <div className="title">NAVIGATION</div>
           <ul>
@@ -40,6 +45,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        {/* Newsletter */}
         <div className="newsletter">
           <div className="title">SIGN UP FOR OUR NEWSLETTER</div>
           <div className="input-group mb-3">
@@ -57,6 +63,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        {/* Links to social media */}
         <div className="social">
           <div className="title">FIND US ON SOCIAL MEDIA</div>
           <Link to="/">
@@ -69,6 +76,7 @@ const Footer = () => {
             <FaInstagram />
           </Link>
         </div>
+        {/* Copyright */}
         <div className="copyright">
           &copy;2019 TripStar All Rights Reserved. Designed by{" "}
           <span className="name">Tasin Ahmed</span>
