@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Rating } from "@material-ui/lab";
 import { AuthContext } from "../config/auth";
@@ -11,8 +11,19 @@ const RevWrite = ({ id }) => {
   const [review, setReview] = useState("");
 
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  const [user, setUser] = useState("");
   let history = useHistory();
+
+  useEffect(() => {
+    app
+      .firestore()
+      .collection("user")
+      .where("user_id", "==", currentUser.uid)
+      .get()
+      .then(querySnapshot => {
+        setUser(querySnapshot.docs[0].data());
+      });
+  }, []);
 
   const submitHandler = useCallback(async e => {
     e.preventDefault();
@@ -40,7 +51,7 @@ const RevWrite = ({ id }) => {
     <div className="rev-write card">
       <div className="user-info">
         <FaUserCircle />
-        <div className="rev-name">Tasin</div>
+        <div className="rev-name">{user.f_name}</div>
       </div>
       <form className="rev-right">
         <input

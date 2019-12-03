@@ -913,6 +913,11 @@ nav .dropdown-item {
   margin-bottom: 25px;
 }
 
+.item-place .title-rev {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .local {
   padding-bottom: 25px;
 }
