@@ -12,7 +12,7 @@ export const Review = ({ review }) => {
     app
       .firestore()
       .collection("user")
-      .where("user_id", "==", currentUser.uid)
+      .where("user_id", "==", review.user_id)
       .get()
       .then(querySnapshot => {
         setUser(querySnapshot.docs[0].data());
