@@ -76,10 +76,12 @@ const Item = ({ id }) => {
           mapElement={<div style={{ height: `100%` }} />}
         />
       </div>
-      <WriteReview id={id} />
-      {review.map(x => (
-        <Review />
-      ))}
+      <div className="item-rev-cont">
+        <WriteReview id={id} />
+        {review.map(x => (
+          <Review review={x} />
+        ))}
+      </div>
     </div>
   );
 };

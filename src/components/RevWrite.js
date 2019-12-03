@@ -11,6 +11,7 @@ const RevWrite = ({ id }) => {
   const [review, setReview] = useState("");
 
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   let history = useHistory();
 
   const submitHandler = useCallback(async e => {
@@ -36,38 +37,36 @@ const RevWrite = ({ id }) => {
   });
 
   return (
-    <div className="item-rev-cont">
-      <div className="rev-write card">
-        <div className="user-info">
-          <FaUserCircle />
-          <div className="rev-name">Tasin</div>
-        </div>
-        <form className="rev-right">
-          <input
-            type="text"
-            placeholder="Title of your review"
-            className="rev-title form-control"
-            onChange={e => setTitle(e.target.value)}
-            required
-          />
-          <div className="star-cont">
-            <Rating
-              size="small"
-              value={star}
-              onChange={(_, value) => setStar(value)}
-            />
-          </div>
-          <textarea
-            placeholder="Your review"
-            className="user-rev form-control"
-            onChange={e => setReview(e.target.value)}
-            required
-          />
-          <button className="btn btn-primary" onClick={submitHandler}>
-            Submit
-          </button>
-        </form>
+    <div className="rev-write card">
+      <div className="user-info">
+        <FaUserCircle />
+        <div className="rev-name">Tasin</div>
       </div>
+      <form className="rev-right">
+        <input
+          type="text"
+          placeholder="Title of your review"
+          className="rev-title form-control"
+          onChange={e => setTitle(e.target.value)}
+          required
+        />
+        <div className="star-cont">
+          <Rating
+            size="small"
+            value={star}
+            onChange={(_, value) => setStar(value)}
+          />
+        </div>
+        <textarea
+          placeholder="Your review"
+          className="user-rev form-control"
+          onChange={e => setReview(e.target.value)}
+          required
+        />
+        <button className="btn btn-primary" onClick={submitHandler}>
+          Submit
+        </button>
+      </form>
     </div>
   );
 };

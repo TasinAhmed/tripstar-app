@@ -40,18 +40,7 @@
     grid-template-columns: 150px 1fr;
     grid-column-gap: 25px;
     padding: 15px;
-
-    .user-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      svg {
-        font-size: 40px;
-        color: #4a4a4b;
-      }
-    }
+    margin-bottom: 25px;
 
     .rev-title {
       margin-bottom: 15px;
@@ -67,9 +56,27 @@
       display: flex;
       flex-direction: column;
     }
+  }
 
-    .rev-star {
-      width: auto;
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    svg {
+      font-size: 40px;
+      color: #4a4a4b;
     }
+  }
+
+  .show-rev {
+    width: 100%;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-column-gap: 25px;
+    padding: 15px;
+    margin-bottom: 25px;
   }
 }
