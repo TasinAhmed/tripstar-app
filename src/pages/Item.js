@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import app from "../config/firebase";
 import { Rating } from "@material-ui/lab";
 import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
 import WriteReview from "../components/RevWrite";
-import { AuthContext } from "../config/auth";
 import Review from "../components/Review";
 
 const Item = ({ id }) => {
   const [image, setImage] = useState();
   const [place, setPlace] = useState("");
   const [review, setReview] = useState([]);
-
-  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     app
@@ -54,7 +51,9 @@ const Item = ({ id }) => {
             lng: place.longitude || 0
           }}
         >
-          <Marker position={{ lat: place.latitude, lng: place.longitude }} />
+          <Marker
+            position={{ lat: place.latitude || 0, lng: place.longitude || 0 }}
+          />
         </GoogleMap>
       </div>
     );
@@ -65,7 +64,7 @@ const Item = ({ id }) => {
       <img className="place-img" src={image} alt="" />
       <div className="place-info">
         <div className="place-title">{place.name}</div>
-        <Rating value={5} readOnly />
+        <Rating value={place.rating} readOnly precision={0.1} />
         <div className="description">{place.description}</div>
       </div>
       <div className="item-map">
@@ -78,8 +77,8 @@ const Item = ({ id }) => {
       </div>
       <div className="item-rev-cont">
         <WriteReview id={id} />
-        {review.map(x => (
-          <Review review={x} />
+        {review.map((x, key) => (
+          <Review key={key} name="rate" review={x} />
         ))}
       </div>
     </div>

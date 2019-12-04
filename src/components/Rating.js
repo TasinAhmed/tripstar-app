@@ -25,7 +25,7 @@ const Rating = ({ history, loc, review }) => {
     <div className="card review-card" onClick={showObject}>
       <img src={image} alt="" />
       <p className="locTitle">{loc.name}</p>
-      <Stars value={5} size="small" readOnly />
+      <Stars value={loc.rating} size="small" precision={0.1} readOnly />
       <div className="review">{review}</div>
     </div>
   );

@@ -9,7 +9,6 @@ const RevWrite = ({ id }) => {
   const [star, setStar] = useState(0);
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
-
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState("");
   let history = useHistory();
@@ -39,10 +38,37 @@ const RevWrite = ({ id }) => {
           rating: star,
           location_id: id,
           time: new Date().toLocaleString()
-        })
-        .then(() => {
-          history.push("/");
-          history.push(`/object/${id}`);
+        });
+      let count = 0;
+      let sum = 0;
+      app
+        .firestore()
+        .collection("review")
+        .where("location_id", "==", id)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            sum += doc.data().rating;
+            count++;
+          });
+          app
+            .firestore()
+            .collection("location")
+            .where("location_id", "==", id)
+            .get()
+            .then(querySnapshot => {
+              app
+                .firestore()
+                .collection("location")
+                .doc(querySnapshot.docs[0].id)
+                .update({
+                  rating: Math.round((sum / (count * 1.0)).toFixed(1) * 10) / 10
+                })
+                .then(() => {
+                  history.push("/");
+                  history.push(`/object/${id}`);
+                });
+            });
         });
     }
   });
@@ -66,6 +92,7 @@ const RevWrite = ({ id }) => {
             size="small"
             value={star}
             onChange={(_, value) => setStar(value)}
+            name="rate"
           />
         </div>
         <textarea

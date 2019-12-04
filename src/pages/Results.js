@@ -6,8 +6,6 @@ import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
 
 const Results = () => {
   const [places, setPlaces] = useState([]);
-  const [latArr, setLatArr] = useState([]);
-  const [lngArr, setLngArr] = useState([]);
 
   const Map = withGoogleMap(() => {
     return (
@@ -37,16 +35,10 @@ const Results = () => {
       .get()
       .then(querySnapshot => {
         let arr = [];
-        let lat = [];
-        let lng = [];
         querySnapshot.forEach(doc => {
           arr.push(doc.data());
-          lat.push(doc.data().latitude);
-          lng.push(doc.data().longitude);
         });
         setPlaces(arr);
-        setLatArr(lat);
-        setLngArr(lng);
       });
   }, []);
   return (

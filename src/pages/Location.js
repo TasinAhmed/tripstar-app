@@ -100,7 +100,8 @@ const Location = ({ history }) => {
           latitude: cords.lat,
           longitude: cords.lng,
           user_id: currentUser.uid,
-          description: desc
+          description: desc,
+          rating: 0
         });
 
       history.push("/");
